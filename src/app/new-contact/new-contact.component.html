@@ -1,0 +1,66 @@
+<div class="create-page">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
+    </ol>
+  </nav>
+  <div class="page-content">
+    <div class="row">
+     <form class="create-form" [formGroup]="userForm" novalidate (ngSubmit)="onSubmit(userForm.value)">
+
+          <div class="form-group">
+            <mat-form-field class="input-style">
+              <input matInput placeholder="First Name" class="form-control" formControlName="firstName">
+            </mat-form-field>
+            <ng-container *ngFor="let validation of validation_messages.firstName">
+              <mat-error *ngIf="userForm.get('firstName').hasError(validation.type) && (userForm.get('firstName').dirty || userForm.get('firstName').touched)">{{validation.message}}</mat-error>
+            </ng-container>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field class="input-style">
+              <input matInput placeholder="Last Name" class="form-control" formControlName="lastName">
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="input-style">
+              <input matInput placeholder="Email" class="form-control" formControlName="email">
+              <mat-error *ngIf="!userForm.get('email').valid && (userForm.get('email').dirty || userForm.get('email').touched)">
+                  Please enter a valid email address
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="input-style">
+              <input matInput placeholder="Phone Number" class="form-control" formControlName="phone">
+              <mat-error *ngIf="!userForm.get('phone').valid && (userForm.get('phone').dirty || userForm.get('phone').touched)">
+                  Please enter a valid phone number min length 6 & max length 10 digit
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="input-style">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status">
+                <mat-option *ngFor="let status of satusList" [value]="status.value">
+                  {{status.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="row submit-button-container">
+            <div class="col-md-4">
+              <button
+                mat-raised-button
+                class="submit-button"
+                color="primary"
+                type="submit" [disabled]="!userForm.valid">
+                {{btnTitle}}
+              </button>
+            </div>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>

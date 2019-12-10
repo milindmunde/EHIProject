@@ -1,0 +1,27 @@
+.create-page {
+  padding: 20px 60px;
+
+  .breadcrumb {
+    background-color: #415366;
+    .breadcrumb-item {
+      color: white;
+    }
+  }
+  .page-content {
+    background-color: #FFF;
+
+    .in-active {
+      opacity: 0.5;
+    }
+    .btn-warning, .btn-danger{
+      font-size: 13px;
+      width: 60px;
+    }
+    .btn-danger {
+      margin-left: 10px;
+    }
+  }
+  .btn-create-contact {
+    float: right;
+  }
+}

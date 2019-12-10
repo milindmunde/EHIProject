@@ -1,0 +1,42 @@
+<div class="create-page">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page"> Contact List</li>
+    </ol>
+  </nav>
+  <div class="page-content">
+    <div class="contact-list">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items"
+            [ngClass]="{'in-active': item.payload.doc.data().status === 'In Active'}">
+            <td>{{item.payload.doc.data().firstName}}</td>
+            <td>{{item.payload.doc.data().lastName}}</td>
+            <td>{{item.payload.doc.data().email}}</td>
+            <td>{{item.payload.doc.data().phone}}</td>
+            <td>{{item.payload.doc.data().status}}</td>
+            <td>
+              <button class="btn btn-warning" (click)="updateContact(item)">Edit</button>
+              <button class="btn btn-danger" (click)="deleteContact(item)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <button type="button" class="btn btn-primary btn-create-contact" (click)="createContact()">Create Contact</button>
+      </div>
+  </div>
+</div>
